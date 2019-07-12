@@ -47,6 +47,17 @@ router.get('/signed-url/:fileName',
     res.status(201).send({url: url});
 });
 
+// Get a signed url to get a item in the S3 bucket
+router.get('/signed-url/get/:fileName',
+    requireAuth,
+    async (req: Request, res: Response) => {
+        let { fileName } = req.params;
+        const url = AWS.getPutSignedUrl(fileName);
+        const urlGet = AWS.getGetSignedUrl(url)
+        res.status(201).send({urlGet: url})
+    }
+);
+
 // Post meta data and the filename after a file is uploaded 
 // NOTE the file name is they key name in the s3 bucket.
 // body : {caption: string, fileName: string};
