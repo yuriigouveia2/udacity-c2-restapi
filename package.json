@@ -8,6 +8,8 @@
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
     "prod": "tsc && node ./www/server.js",
+    "cleanSH": "@powershell if((Test-Path -Path www)){del -R www}",
+    "buildSH": "@powershell npm run cleanSH; tsc; cp src/config www -Recurse -Force; cp .npmrc www; cp package.json www; cd www; Compress-Archive * Archive.zip; cd ..; echo 'Project build completed'",
     "clean": "rm -rf www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1"

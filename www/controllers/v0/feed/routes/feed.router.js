@@ -39,12 +39,22 @@ router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
 // update a specific resource
 router.patch('/:id', auth_router_1.requireAuth, (req, res) => __awaiter(this, void 0, void 0, function* () {
     //@TODO try it yourself
-    res.send(500).send("not implemented");
+    let { id } = req.params;
+    let item = yield FeedItem_1.FeedItem.findByPk(id);
+    yield FeedItem_1.FeedItem.update({ caption: item.caption + '!' }, { where: { id: item.id } }).then(result => {
+        res.status(201).send(result);
+    });
 }));
 // Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName', auth_router_1.requireAuth, (req, res) => __awaiter(this, void 0, void 0, function* () {
     let { fileName } = req.params;
     const url = AWS.getPutSignedUrl(fileName);
+    res.status(201).send({ url: url });
+}));
+// Get a signed url to get a item in the S3 bucket
+router.get('/signed-url/get/:fileName', auth_router_1.requireAuth, (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let { fileName } = req.params;
+    const url = AWS.getGetSignedUrl(fileName);
     res.status(201).send({ url: url });
 }));
 // Post meta data and the filename after a file is uploaded 
