@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = {
     "dev": {
-        "username": process.env.POSTGRES_USERNAME,
-        "password": process.env.POSTGRES_PASSWORD,
-        "database": process.env.POSTGRES_DATABASE,
-        "host": process.env.POSTGRES_HOST,
+        "username": "yuriigouveia",
+        "password": "Simpsons007yuri",
+        "database": "udagramyuridev",
+        "host": "udagramyuridev.cis6odahbbfw.sa-east-1.rds.amazonaws.com",
         "dialect": "postgres",
-        "aws_reigion": process.env.AWS_REGION,
-        "aws_profile": process.env.AWS_PROFILE,
-        "aws_media_bucket": process.env.AWS_MEDIA_BUCKET,
+        "aws_reigion": "sa-east-1",
+        "aws_profile": "DEPLOYED",
+        "aws_media_bucket": "udagram-yuri-dev",
     },
     "prod": {
         "username": "",
