@@ -1,9 +1,9 @@
 branch-defaults:
-  deploy:
-    artifact: ./www/Archive.zip
   dev:
     environment: udagram-yuri-dev-dev
     group_suffix: null
+deploy:
+  artifact: ./www/Archive.zip
 global:
   application_name: udagram-yuri-dev
   branch: null
